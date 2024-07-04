@@ -1,0 +1,56 @@
+@startuml
+class SpaceInvaders {
+  - puntajeActual : int
+  - mejorPuntaje : int
+  + iniciarPartida() : void
+  + guardarPuntuacion() : void
+}
+
+abstract class Personaje {
+  - puntosDeVida: int
+  + dispararProyectil(): void
+  + recibirDaño(int): void
+}
+
+class Player {
+  + cambiarDePosicion(String): void
+}
+
+abstract class Enemigo {
+  - puntajePorAsesinato: int
+  + mover(): void
+}
+
+class EnemigoNormal {
+  + patronDeMovimiento() : void
+}
+
+class EnemigoEspecial {
+  + patronDeMovimiento() : void
+  + tiempoDeAparicion(): int
+}
+
+class Proyectil {
+  - daño : int
+  + disminuirPuntosDeVida(Personaje): void
+}
+
+class Escudo {
+  - resistencia: int
+  + recibirDisparo(): void
+}
+
+class Poder {
+  + aplicarEfecto(): void
+}
+
+SpaceInvaders --> Personaje
+SpaceInvaders --> Escudo
+SpaceInvaders --> Poder
+Proyectil <-- Player
+Proyectil <-- Enemigo
+Player --|> Personaje
+Enemigo --|> Personaje
+EnemigoEspecial --|> Enemigo
+EnemigoNormal --|> Enemigo
+@enduml
